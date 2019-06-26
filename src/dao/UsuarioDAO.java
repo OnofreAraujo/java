@@ -30,7 +30,8 @@ public class UsuarioDAO {
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
                 usuario.setLevel(rs.getInt("privilegios"));
-                lista.add(usuario);                
+                usuario.setId(rs.getInt("ID"));
+                lista.add(usuario);               
             }
             
         } catch (Exception e) {
@@ -51,6 +52,31 @@ public class UsuarioDAO {
         }catch(Exception e){
             
         }
+    }
+    
+    public void atualizarUsuario(Usuario usuario){
+        try{
+            PreparedStatement ps = con.prepareStatement("UPDATE usuarios SET nome = ?, email = ?, privilegios = ? WHERE ID = ?");
+            ps.setString(1, usuario.getNome());
+            ps.setString(2, usuario.getEmail());
+            ps.setInt(3, usuario.getLevel());
+            ps.setInt(4, usuario.getId());
+            ps.execute();
+        }catch(Exception e){
+            
+        }
+    }
+    
+    
+    public void deleteUsuario(int id){
+        try{
+            PreparedStatement ps = con.prepareStatement("DELETE FROM usuarios WHERE id = ?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }catch(Exception e){
+        
+        }
+        
     }
     
     public boolean LoginUsuario(String user, String pass){

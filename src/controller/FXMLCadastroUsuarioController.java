@@ -2,6 +2,7 @@
 package controller;
 
 import dao.UsuarioDAO;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -13,6 +14,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
@@ -22,6 +25,8 @@ import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import model.Hash;
 import model.Usuario;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import view.Palco;
 
 
@@ -45,11 +50,10 @@ public class FXMLCadastroUsuarioController implements Initializable {
     @FXML
     private Button btnMenu;
 
-
     @FXML
-    void salvar(ActionEvent event) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    void salvar(ActionEvent event) throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException {
         
-        if((txtNome.getText().length() > 0) && (txtEmail.getText().length() > 0) && (level.getText().length() > 0)){
+        if((!txtNome.getText().trim().equals(" ")) && (!txtEmail.getText().trim().equals(" ")) && (!level.getText().trim().equals(" "))){
             if(isNumeric(level.getText())){
                 String senha = "";
                 usuario.setNome(txtNome.getText());
@@ -65,32 +69,50 @@ public class FXMLCadastroUsuarioController implements Initializable {
                 System.out.println(senha); 
                 usuario.setSenha(Hash.md5(senha));
 
+                Alert cadastrado = new Alert(AlertType.INFORMATION);
+                cadastrado.setTitle("CADASTRO");
+                cadastrado.setHeaderText("Usuario Cadastrado com sucesso\nDados abaixo:");
+                cadastrado.setContentText("Nome: " + usuario.getNome() + "\nEmail: " + usuario.getEmail() + "\nNivel de Acesso: " + usuario.getLevel() + "\nSenha: " + senha + "\nOBS: Guarde bem está senha");
+                
+                cadastrado.showAndWait();
                 dao.CadastrarUsuario(usuario);
+                
+                limparTela();
                 
             }else{
                 JOptionPane.showMessageDialog(null, "|INFO | O campo de level só pode ser preechindo com numero");
             }
         }else{
+            System.out.println(txtNome.getText());
             JOptionPane.showMessageDialog(null, "Preecha todos os campos!!!");
         }
     }
     
-   @FXML void menu(ActionEvent event) {
-       Palco.cena("menu");
+   @FXML void menu(ActionEvent event) throws IOException {
+       Palco palco = new Palco();
+       palco.cena("menu");
     }
    
    @FXML void limpar(ActionEvent event) {
-       txtNome.setText(null);
-       txtEmail.setText(null);
-       level.setText(" ");
+        limparTela();
        
-       usuario.setNome(null);
-       usuario.setEmail(null);
-       usuario.setLevel(0);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+    }
+    
+    
+    private void limparTela(){
+       txtNome.setText("");
+       txtEmail.setText("");
+       level.setText("");
+       
+       usuario.setEmail("");
+       usuario.setId(0);
+       usuario.setLevel(0);
+       usuario.setNome("");
+       usuario.setSenha("");
     }
   
     private boolean isNumeric(String campo){		

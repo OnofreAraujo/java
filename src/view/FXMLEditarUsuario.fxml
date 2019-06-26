@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLEditarUsuarioController">
+   <children>
+      <ImageView fx:id="imagem" fitHeight="150.0" fitWidth="200.0" layoutX="164.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagem-login.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="50.0" layoutY="169.0" text="NOME:" />
+      <TextField fx:id="txtNome" layoutX="111.0" layoutY="159.0" prefHeight="38.0" prefWidth="302.0" promptText="Nome de usuario" />
+      
+      <Label layoutX="51.0" layoutY="222.0" text="EMAIL:" />
+      <TextField fx:id="txtEmail" layoutX="113.0" layoutY="211.0" prefHeight="38.0" prefWidth="302.0" promptText="Email do usuario" />
+      
+      <Label layoutX="50.0" layoutY="278.0" prefHeight="17.0" prefWidth="38.0" text="LEVEL:" />
+      <TextField fx:id="level" layoutX="113.0" layoutY="267.0" prefHeight="38.0" prefWidth="94.0" />
+      
+      <Button fx:id="btSalvar" layoutX="116.0" layoutY="343.0" mnemonicParsing="false" onAction="#salvar" prefHeight="32.0" prefWidth="88.0" style="-fx-background-color: green;" text="SALVAR" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btCancel" layoutX="264.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="32.0" prefWidth="88.0" style="-fx-background-color: red;" text="CANCELAR" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      
+   </children>
+</AnchorPane>

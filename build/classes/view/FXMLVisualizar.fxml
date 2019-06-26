@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -19,5 +20,15 @@
          </columnResizePolicy>
       </TableView>
       <Button fx:id="btnMenu" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#menu" text="&lt;- MENU" />
+      <Button layoutX="180.0" layoutY="461.0" mnemonicParsing="false" onAction="#alterarUser" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: green;" text="Alterar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="383.0" layoutY="461.0" mnemonicParsing="false" onAction="#deletarUser" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: red;" text="Deletar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

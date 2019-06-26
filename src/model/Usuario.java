@@ -4,8 +4,16 @@ public class Usuario {
     private String email;
     private String senha;
     private int level;
-    
+    private int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -36,6 +44,11 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nome=" + nome + ", email=" + email + ", senha=" + senha + ", level=" + level + '}';
     }
     
     

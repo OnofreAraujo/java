@@ -53,7 +53,7 @@ public class FXMLEditarUsuarioController {
                 Alert editado = new Alert(AlertType.INFORMATION);
                 editado.setTitle("EDITAR");
                 editado.setHeaderText("Usuario Editado com sucesso\nDados abaixo:");
-                editado.setContentText("Nome: " + usuario.getNome() + "\nEmail: " + usuario.getEmail() + "\nNivel de Acesso: " + usuario.getLevel() + "\nOBS: A senha do usuario foi enviada para o email do mesmo!!");
+                editado.setContentText("Nome: " + usuario.getNome() + "\nEmail: " + usuario.getEmail() + "\nNivel de Acesso: " + usuario.getLevel() + "\nOBS: A senha do usuario não pode ser alterada!!");
                 limparTela();
                 editado.showAndWait();
                 dao.atualizarUsuario(usuario);
